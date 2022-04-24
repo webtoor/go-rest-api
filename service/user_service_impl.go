@@ -88,11 +88,11 @@ func (service *UserServiceImpl) Update(userId int, request web.UserUpdateRequest
 	return response
 }
 
-func (service *UserServiceImpl) Delete(UserId int) {
+func (service *UserServiceImpl) Delete(userId int) {
 
-	_, err := service.UserRepository.FindById(UserId)
+	_, err := service.UserRepository.FindById(userId)
 
 	exception.Panic(err)
 
-	service.UserRepository.Delete(UserId)
+	service.UserRepository.Delete(userId)
 }
