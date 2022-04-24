@@ -14,15 +14,16 @@ import (
 func main() {
 	db := config.InitDb()
 	validate := validator.New()
-	CoinRepository := repository.NewCoinRepository()
-	CoinService := service.NewCoinService(CoinRepository, db, validate)
-	CoinController := controller.NewCoinController(CoinService)
+
+	userRepository := repository.NewUserRepository()
+	userService := service.NewUserService(userRepository, db, validate)
+	userController := controller.NewUserController(userService)
 
 	// Setup Fiber
 	app := fiber.New(config.NewFiberConfig())
 	app.Use(recover.New())
 
-	CoinController.Route(app)
+	userController.Route(app)
 
 	// Start App
 	err := app.Listen(":3000")

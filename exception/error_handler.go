@@ -18,6 +18,14 @@ func ErrorHandler(ctx *fiber.Ctx, err error) error {
 		})
 	}
 
+	if err.Error() == "record not found" {
+		return ctx.Status(fiber.StatusNotFound).JSON(web.JsonResponse{
+			Code:   404,
+			Status: "RECORD NOT FOUND",
+			Data:   err.Error(),
+		})
+	}
+
 	return ctx.Status(fiber.StatusInternalServerError).JSON(web.JsonResponse{
 		Code:   500,
 		Status: "INTERNAL SERVER ERROR",
