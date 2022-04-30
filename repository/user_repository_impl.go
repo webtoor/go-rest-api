@@ -1,8 +1,9 @@
 package repository
 
 import (
-	"github.com/webtoor/go-fiber/config"
+	"github.com/webtoor/go-fiber/helper"
 	"github.com/webtoor/go-fiber/model/entity"
+	"gorm.io/gorm"
 )
 
 type UserRepositoryImpl struct {
@@ -12,42 +13,41 @@ func NewUserRepository() UserRepository {
 	return &UserRepositoryImpl{}
 }
 
-func (repository *UserRepositoryImpl) Create(user entity.User) entity.User {
+func (repository *UserRepositoryImpl) Create(tx *gorm.DB, user entity.User) entity.User {
 
-	if result := config.DB.Create(&user); result.Error != nil {
-		panic(result.Error)
-	}
+	err := tx.Create(&user).Error
+	helper.PanicIfError(err)
 
 	return user
 }
 
-func (repository *UserRepositoryImpl) FindAll() []entity.User {
+func (repository *UserRepositoryImpl) FindAll(tx *gorm.DB) []entity.User {
 	users := []entity.User{}
 
-	config.DB.Find(&users)
+	err := tx.Order("id desc").Find(&users).Error
+	helper.PanicIfError(err)
 
 	return users
 }
 
-func (repository *UserRepositoryImpl) FindById(userId int) (entity.User, error) {
+func (repository *UserRepositoryImpl) FindById(tx *gorm.DB, userId int) (entity.User, error) {
 	user := entity.User{}
 
-	if result := config.DB.First(&user, userId); result.Error != nil {
-		panic(result.Error)
-	}
+	err := tx.First(&user, userId).Error
+	helper.PanicIfError(err)
 
 	return user, nil
 }
 
-func (repository *UserRepositoryImpl) Update(userId int, user entity.User) entity.User {
+func (repository *UserRepositoryImpl) Update(tx *gorm.DB, userId int, user entity.User) entity.User {
 
-	if result := config.DB.Model(&user).Where("id = ?", userId).Updates(&user); result.Error != nil {
-		panic(result.Error)
-	}
+	err := tx.Model(&user).Where("id = ?", userId).Updates(&user).Error
+	helper.PanicIfError(err)
 
 	return user
 }
 
-func (repository *UserRepositoryImpl) Delete(userId int) {
-	config.DB.Delete(&entity.User{}, userId)
+func (repository *UserRepositoryImpl) Delete(tx *gorm.DB, userId int) {
+	err := tx.Delete(&entity.User{}, userId).Error
+	helper.PanicIfError(err)
 }

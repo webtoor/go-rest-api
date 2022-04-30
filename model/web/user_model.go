@@ -18,6 +18,7 @@ type UserUpdateRequest struct {
 type UserUpdateResponse struct {
 	Email string `json:"email"`
 }
+
 type GetUserResponse struct {
 	Id    int    `json:"id"`
 	Email string `json:"Email"`

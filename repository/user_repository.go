@@ -2,12 +2,13 @@ package repository
 
 import (
 	"github.com/webtoor/go-fiber/model/entity"
+	"gorm.io/gorm"
 )
 
 type UserRepository interface {
-	Create(user entity.User) entity.User
-	FindAll() []entity.User
-	FindById(userId int) (entity.User, error)
-	Update(userId int, user entity.User) entity.User
-	Delete(userId int)
+	Create(tx *gorm.DB, user entity.User) entity.User
+	FindAll(tx *gorm.DB) []entity.User
+	FindById(tx *gorm.DB, userId int) (entity.User, error)
+	Update(tx *gorm.DB, userId int, user entity.User) entity.User
+	Delete(tx *gorm.DB, userId int)
 }

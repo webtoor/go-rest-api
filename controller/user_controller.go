@@ -4,7 +4,7 @@ import (
 	"strconv"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/webtoor/go-fiber/exception"
+	"github.com/webtoor/go-fiber/helper"
 	"github.com/webtoor/go-fiber/model/web"
 	"github.com/webtoor/go-fiber/service"
 )
@@ -30,7 +30,7 @@ func (controller *UserController) Route(app *fiber.App) {
 func (controller *UserController) Create(c *fiber.Ctx) error {
 	var request web.UserCreateRequest
 	err := c.BodyParser(&request)
-	exception.Panic(err)
+	helper.PanicIfError(err)
 
 	response := controller.UserService.Create(request)
 	return c.JSON(web.JsonResponse{
@@ -63,7 +63,7 @@ func (controller *UserController) FindById(c *fiber.Ctx) error {
 func (controller *UserController) Update(c *fiber.Ctx) error {
 	var request web.UserUpdateRequest
 	err := c.BodyParser(&request)
-	exception.Panic(err)
+	helper.PanicIfError(err)
 
 	userId := c.Params("id")
 	id, _ := strconv.Atoi(userId)

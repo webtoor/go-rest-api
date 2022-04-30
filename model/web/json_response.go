@@ -1,13 +1,14 @@
 package web
 
 type JsonResponse struct {
-	Code   int         `json:"code"`
-	Status string      `json:"status"`
-	Data   interface{} `json:"data"`
+	Code    int         `json:"code"`
+	Status  string      `json:"status"`
+	Message interface{} `json:"message,omitempty"`
+	Data    interface{} `json:"data"`
 }
 
 type ValidationMessage struct {
-	FailedField string
-	Tag         string
-	Value       string
+	FailedField string `json:"failedField"`
+	Tag         string `json:"tag"`
+	Value       string `json:"value"`
 }

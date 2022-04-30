@@ -6,7 +6,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/webtoor/go-fiber/config"
 	"github.com/webtoor/go-fiber/controller"
-	"github.com/webtoor/go-fiber/exception"
+	"github.com/webtoor/go-fiber/helper"
 	"github.com/webtoor/go-fiber/repository"
 	"github.com/webtoor/go-fiber/service"
 )
@@ -16,7 +16,9 @@ func main() {
 	validate := validator.New()
 
 	userRepository := repository.NewUserRepository()
-	userService := service.NewUserService(userRepository, db, validate)
+	userRoleRepository := repository.NewUserRoleRepository()
+
+	userService := service.NewUserService(&userRepository, &userRoleRepository, db, validate)
 	userController := controller.NewUserController(userService)
 
 	// Setup Fiber
@@ -27,6 +29,6 @@ func main() {
 
 	// Start App
 	err := app.Listen(":3000")
-	exception.Panic(err)
+	helper.PanicIfError(err)
 
 }
