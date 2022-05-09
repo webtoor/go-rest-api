@@ -2,10 +2,10 @@ package service
 
 import (
 	"github.com/go-playground/validator/v10"
-	"github.com/webtoor/go-fiber/helper"
-	"github.com/webtoor/go-fiber/model/entity"
-	"github.com/webtoor/go-fiber/model/web"
-	"github.com/webtoor/go-fiber/repository"
+	"github.com/webtoor/go-rest-api/helper"
+	"github.com/webtoor/go-rest-api/model/entity"
+	"github.com/webtoor/go-rest-api/model/web"
+	"github.com/webtoor/go-rest-api/repository"
 	"gorm.io/gorm"
 )
 

@@ -4,9 +4,9 @@ import (
 	"strconv"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/webtoor/go-fiber/helper"
-	"github.com/webtoor/go-fiber/model/web"
-	"github.com/webtoor/go-fiber/service"
+	"github.com/webtoor/go-rest-api/helper"
+	"github.com/webtoor/go-rest-api/model/web"
+	"github.com/webtoor/go-rest-api/service"
 )
 
 type UserController struct {

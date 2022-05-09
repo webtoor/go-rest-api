@@ -1,7 +1,7 @@
 package service
 
 import (
-	"github.com/webtoor/go-fiber/model/web"
+	"github.com/webtoor/go-rest-api/model/web"
 )
 
 type UserService interface {

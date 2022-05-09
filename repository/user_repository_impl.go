@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"github.com/webtoor/go-fiber/helper"
-	"github.com/webtoor/go-fiber/model/entity"
+	"github.com/webtoor/go-rest-api/helper"
+	"github.com/webtoor/go-rest-api/model/entity"
 	"gorm.io/gorm"
 )
 

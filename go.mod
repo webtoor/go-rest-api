@@ -1,4 +1,4 @@
-module github.com/webtoor/go-fiber
+module github.com/webtoor/go-rest-api
 
 go 1.18
 

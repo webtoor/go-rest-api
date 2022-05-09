@@ -5,7 +5,7 @@ import (
 
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
-	"github.com/webtoor/go-fiber/model/web"
+	"github.com/webtoor/go-rest-api/model/web"
 )
 
 func ErrorHandler(ctx *fiber.Ctx, err error) error {

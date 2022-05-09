@@ -4,11 +4,11 @@ import (
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/recover"
-	"github.com/webtoor/go-fiber/config"
-	"github.com/webtoor/go-fiber/controller"
-	"github.com/webtoor/go-fiber/helper"
-	"github.com/webtoor/go-fiber/repository"
-	"github.com/webtoor/go-fiber/service"
+	"github.com/webtoor/go-rest-api/config"
+	"github.com/webtoor/go-rest-api/controller"
+	"github.com/webtoor/go-rest-api/helper"
+	"github.com/webtoor/go-rest-api/repository"
+	"github.com/webtoor/go-rest-api/service"
 )
 
 func main() {
