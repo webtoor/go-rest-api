@@ -10,7 +10,7 @@ import (
 
 const DB_USERNAME = "root"
 const DB_PASSWORD = "Rahasia123"
-const DB_NAME = "basic_api_go"
+const DB_NAME = "go_rest_api"
 const DB_HOST = "192.168.1.6"
 const DB_PORT = "3306"
 

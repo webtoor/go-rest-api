@@ -33,7 +33,8 @@ func (controller *UserController) Create(c *fiber.Ctx) error {
 	helper.PanicIfError(err)
 
 	response := controller.UserService.Create(request)
-	return c.JSON(web.JsonResponse{
+
+	return c.Status(fiber.StatusCreated).JSON(web.JsonResponse{
 		Code:   201,
 		Status: "CREATED",
 		Data:   response,
