@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 
+	"github.com/webtoor/go-rest-api/helper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -28,7 +29,7 @@ func connectDB() *gorm.DB {
 
 	if err != nil {
 		fmt.Println("Error connecting to database : error")
-		return nil
+		helper.PanicIfError(err)
 	}
 
 	return db
