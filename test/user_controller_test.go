@@ -5,12 +5,14 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http/httptest"
+	"os"
 	"strconv"
 	"testing"
 
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/recover"
+	"github.com/joho/godotenv"
 	"github.com/stretchr/testify/assert"
 	"github.com/webtoor/go-rest-api/config"
 	"github.com/webtoor/go-rest-api/controller"
@@ -23,14 +25,17 @@ import (
 	"gorm.io/gorm"
 )
 
-const DB_USERNAME_TEST = "root"
-const DB_PASSWORD = "Rahasia123"
-const DB_NAME = "go_rest_api_test"
-const DB_HOST = "192.168.1.6"
-const DB_PORT = "3306"
-
 func setupTestDB() *gorm.DB {
-	dsn := DB_USERNAME_TEST + ":" + DB_PASSWORD + "@tcp" + "(" + DB_HOST + ":" + DB_PORT + ")/" + DB_NAME + "?" + "parseTime=true&loc=Local"
+	err := godotenv.Load("../.env")
+	helper.PanicIfError(err)
+
+	DB_USERNAME := os.Getenv("DB_USERNAME_TEST")
+	DB_PASSWORD := os.Getenv("DB_PASSWORD_TEST")
+	DB_NAME := os.Getenv("DB_NAME_TEST")
+	DB_HOST := os.Getenv("DB_HOST_TEST")
+	DB_PORT := os.Getenv("DB_PORT_TEST")
+
+	dsn := DB_USERNAME + ":" + DB_PASSWORD + "@tcp" + "(" + DB_HOST + ":" + DB_PORT + ")/" + DB_NAME + "?" + "parseTime=true&loc=Local"
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	helper.PanicIfError(err)

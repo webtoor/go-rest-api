@@ -2,17 +2,12 @@ package config
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/webtoor/go-rest-api/helper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
-
-const DB_USERNAME = "root"
-const DB_PASSWORD = "Rahasia123"
-const DB_NAME = "go_rest_api"
-const DB_HOST = "192.168.1.6"
-const DB_PORT = "3306"
 
 var DB *gorm.DB
 
@@ -23,6 +18,13 @@ func InitDb() *gorm.DB {
 
 func connectDB() *gorm.DB {
 	var err error
+
+	DB_USERNAME := os.Getenv("DB_USERNAME")
+	DB_PASSWORD := os.Getenv("DB_PASSWORD")
+	DB_NAME := os.Getenv("DB_NAME")
+	DB_HOST := os.Getenv("DB_HOST")
+	DB_PORT := os.Getenv("DB_PORT")
+
 	dsn := DB_USERNAME + ":" + DB_PASSWORD + "@tcp" + "(" + DB_HOST + ":" + DB_PORT + ")/" + DB_NAME + "?" + "parseTime=true&loc=Local"
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
