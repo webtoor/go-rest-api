@@ -21,5 +21,5 @@ type UserUpdateResponse struct {
 
 type GetUserResponse struct {
 	Id    int    `json:"id"`
-	Email string `json:"Email"`
+	Email string `json:"email"`
 }
