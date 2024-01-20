@@ -1,0 +1,4 @@
+config/app.json
+go-rest-api
+go.sum
+vendor
